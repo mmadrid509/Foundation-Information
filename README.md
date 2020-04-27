@@ -3,7 +3,7 @@ This is a discord bot that has information about SCPs directly from the SCP wiki
 
 This bot uses NODE.JS, so install that.
 
-Make sure to check the lisense!
+Make sure to check the license!
 
 If self-hosted, please don't delete the lisense because there be a condition that says you have to include the lisense with the software
 
