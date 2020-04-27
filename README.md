@@ -5,7 +5,7 @@ This bot uses NODE.JS, so install that.
 
 Make sure to check the license!
 
-If self-hosted, please don't delete the lisense because there be a condition that says you have to include the lisense with the software
+If self-hosted, please don't delete the license because there be a condition that says you have to include the lisense with the software
 
 # How 2 self-host
 
