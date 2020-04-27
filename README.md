@@ -18,3 +18,6 @@ Four: There is no four. You're all set.
 # Things to know
 
 This code has only like, 7 SCPs. Sooo I'd suggest using the ACTUAL bot so that you can use new SCPs that are added.
+
+# SUPPORT SERVER
+https://discord.gg/EmeC6Yr
