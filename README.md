@@ -5,6 +5,8 @@ This bot uses NODE.JS, so install that.
 
 Make sure to check the lisense!
 
+If self-hosted, please don't delete the lisense because there be a condition that says you have to include the lisense with the software
+
 # How 2 self-host
 
 First things first: Download this code as a ZIPPED File, and get something like Visual Studio Code.
