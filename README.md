@@ -1,8 +1,6 @@
 # SCP-Information basic stuff
 This is a discord bot that has information about SCPs directly from the SCP wiki.
 
-This bot uses NODE.JS, so install that.
-
 Make sure to check the license!
 
 If self-hosted, please don't delete the license because there be a condition that says you have to include the lisense with the software
@@ -10,6 +8,8 @@ If self-hosted, please don't delete the license because there be a condition tha
 # How 2 self-host
 
 Small thing, respect the license.
+
+Hey, the code uses discord.js, and node.js. So install those first.
 
 First things first: Download this code as a ZIPPED File, and get something like Visual Studio Code.
 
