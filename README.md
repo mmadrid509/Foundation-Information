@@ -1,4 +1,4 @@
-# SCP-Information basic stuff
+# SCP-Information Basic Stuff
 This is a discord bot that has information about SCPs directly from the SCP wiki.
 
 Make sure to check the license!
@@ -27,7 +27,12 @@ First things first: Download this code as a ZIPPED File, and get something like 
 
 # Things to know
 
-This code has only like, 7 SCPs. Sooo I'd suggest using the ACTUAL bot so that you can use new SCPs that are added.
+This code has only SCPs. Sooo I'd suggest using the ACTUAL bot so that you can use new SCPs that are added.
+
+I am planing on making some parts paid, and those changed will not be recorded here.
 
 # SUPPORT SERVER
 https://discord.gg/EmeC6Yr
+
+# REAL BOT INVITE
+https://discordapp.com/api/oauth2/authorize?client_id=702659948030459927&permissions=67238912&scope=bot
