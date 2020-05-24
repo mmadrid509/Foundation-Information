@@ -4,9 +4,9 @@ const SCP002 = new Discord.MessageEmbed()
 	.setTitle('SCP-002')
 	.setURL('http://www.scp-wiki.net/scp-002')
 	.setAuthor('SCP Foundation')
-	.setDescription('GENERAL NOTICE 001-Alpha: In order to prevent knowledge of SCP-001 from being leaked, several/no false SCP-001 files have been created alongside the true file/files. All files concerning the nature of SCP-001, including the decoy/decoys, are protected by a memetic kill agent designed to immediately cause cardiac arrest in any nonauthorized personnel attempting to access the file. Revealing the true nature/natures of SCP-001 to the general public is cause for execution, except as required under ████-███-██████.')
+	.setDescription('Object Class: Euclid')
 	.setThumbnail('https://cdn.discordapp.com/attachments/692738250514890773/713418940734505010/download_7.jpg')
-
+.addField('Special Containment Procedures: SCP-002 is to remain connected to a suitable power supply at all times, to keep it in what appears to be a recharging mode. In case of electrical outage, the emergency barrier between the object and the facility is to be closed and the immediate area evacuated. Once facility power is re-established, alternating bursts of X-ray and ultraviolet light must strobe the area until SCP-002 is re-affixed to the power supply and returned to recharging mode. Containment area is to be kept at negative air pressure at all times.')
 
 	
 	.setTimestamp()
