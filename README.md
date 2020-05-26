@@ -21,13 +21,13 @@ First things first: Download this code as a ZIPPED File, and get something like 
 
 5: Run these commands: `npm install --save discord.js`,  `npm install --save sequelize`, then `npm install --save sqlite3`
 
-5: Run the command: node `./currency-stuff/dbInit.js`
+6: Run the command: node `./currency-stuff/dbInit.js`
 
-5: Open the terminal and type this: `node index.js`
+7: Open the terminal and type this: `node index.js`
 
-6: Invite your bot, and enjoy. You're all set.
+8: Invite your bot, and enjoy. You're all set.
 
-7: I'd suggest add more SCPs.
+9: I'd suggest add more SCPs.
 
 # Things to know
 
