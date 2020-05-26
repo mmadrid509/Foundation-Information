@@ -19,6 +19,10 @@ First things first: Download this code as a ZIPPED File, and get something like 
 
 4: Change the token in `config.json`. (OPTIONAL) You can change the prefix as well.
 
+5: Run these commands: `npm install --save discord.js`,  `npm install --save sequelize`, then `npm install --save sqlite3`
+
+5: Run the command: node `./currency-stuff/dbInit.js`
+
 5: Open the terminal and type this: `node index.js`
 
 6: Invite your bot, and enjoy. You're all set.
@@ -26,8 +30,6 @@ First things first: Download this code as a ZIPPED File, and get something like 
 7: I'd suggest add more SCPs.
 
 # Things to know
-
-This code has only SCPs. Sooo I'd suggest using the ACTUAL bot so that you can use new SCPs that are added.
 
 I am planing on making some parts paid, and those changed will not be recorded here.
 
