@@ -1,4 +1,4 @@
-# SCP-Information Basic Stuff
+# Foundation-Information Basic Stuff
 This is a discord bot that has information about SCPs directly from the SCP wiki.
 
 Make sure to check the license!
@@ -37,4 +37,4 @@ I am planing on making some parts paid, and those changed will not be recorded h
 https://discord.gg/EmeC6Yr
 
 # REAL BOT INVITE
-https://discordapp.com/api/oauth2/authorize?client_id=702659948030459927&permissions=67238912&scope=bot
+[Invite Me Here!](https://discordapp.com/api/oauth2/authorize?client_id=702659948030459927&permissions=67238912&scope=bot)
