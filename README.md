@@ -31,7 +31,7 @@ First things first: Download this code as a ZIPPED File, and get something like 
 
 # Things to know
 
-I am planing on making some parts paid, and those changed will not be recorded here.
+Just wait and see.
 
 # SUPPORT SERVER
 https://discord.gg/EmeC6Yr
