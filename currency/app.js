@@ -6,7 +6,7 @@ const { Op } = require('sequelize');
 const currency = new Discord.Collection();
 const PREFIX = ';';
 const talkedRecently = new Set();
-const type = require('./models/CurrencyShop');
+const banned = require('./banned.json')
 
 
 
@@ -45,17 +45,65 @@ client.on('message', async message => {
 	if (!input.length) return;
 	const [, command, commandArgs] = input.match(/(\w+)\s*([\s\S]*)/);
 
+
 	if (command === 'bal') {
+		
 		const target = message.mentions.users.first() || message.author;
-return message.channel.send(`${target.tag} has ${currency.getBalance(target.id)} tokens.`);
-	} else if (command === 'inv') {
+		
+		
+		return message.channel.send(`${target.tag} has ${currency.getBalance(target.id)} tokens.`);
+
+	}
+	else if (command === 'inv') {
 		const target = message.mentions.users.first() || message.author;
 const user = await Users.findOne({ where: { user_id: target.id } });
 const items = await user.getItems();
 
 if (!items.length) return message.channel.send(`${target.tag} has nothing!`);
 return message.channel.send(`${target.tag} currently has ${items.map(i => `${i.amount} ${i.item.name}`).join(', ')}`);
-	} else if (command === 'give') {
+	}
+	else if (command === 'wstatus') {
+		if (message.author.id === "369179413771845642") {
+            message.reply(`Setting watching status to ${commandArgs}`)
+        await client.user.setActivity(commandArgs, {type: "WATCHING"})
+        message.channel.send(`Set watching status to ${commandArgs}`)
+        }
+        else {
+            message.reply(`You aren't the bot owner!`)
+        }
+		
+	}
+	else if (command === 'lstatus') {
+		if (message.author.id === "369179413771845642") {
+            message.reply(`Setting listening status to ${commandArgs}`)
+        await client.user.setActivity(commandArgs, {type: "LISTENING"})
+        message.channel.send(`Set listening status to ${commandArgs}`)
+        }
+        else {
+            message.reply(`You aren't the bot owner!`)
+        }
+		
+	}
+	else if (command === 'pstatus') {
+		if (message.author.id === "369179413771845642") {
+            message.reply(`Setting playing status to ${commandArgs}`);
+        await client.user.setActivity(commandArgs);
+        message.channel.send(`Set playing status to ${commandArgs}`);
+        }
+        else {
+            message.reply(`You aren't the bot owner!`)
+        }
+		
+	}
+	
+	else if (command === 'members') {
+		message.guild.members.fetch().then(fetchedMembers => {
+			const totalOnline = fetchedMembers
+			// We now have a collection with all online member objects in the totalOnline variable
+			message.channel.send(`There are currently ${totalOnline.size} members in this guild!`);
+		});
+	}
+	else if (command === 'give') {
 		const currentAmount = currency.getBalance(message.author.id);
 const transferAmount = commandArgs.split(/ +/g).find(arg => !/<@!?\d+>/g.test(arg));
 const transferTarget = message.mentions.users.first();
@@ -69,6 +117,7 @@ currency.add(transferTarget.id, transferAmount);
 
 return message.channel.send(`Successfully transferred ${transferAmount} tokens to ${transferTarget.tag}. Your current balance is ${currency.getBalance(message.author.id)} tokens.`);
 	} else if (command === 'buy') {
+		if (message.author.id === banned.banne) return message.reply(`Sorry m8. You're banned from using currency commands.`)
 		const item = await CurrencyShop.findOne({ where: { name: { [Op.like]: commandArgs } } });
 if (!item) return message.channel.send(`That item doesn't exist.`);
 if (item.cost > currency.getBalance(message.author.id)) {
@@ -82,7 +131,7 @@ await user.addItem(item);
 message.channel.send(`You've bought: ${item.name}.`);
 	} else if (command === 'shop') {
 		const items = await CurrencyShop.findAll();
-return message.channel.send(items.map(item => `${item.name}: ${item.cost} tokens Type: Collectible`).join('\n'), { code: true });
+return message.channel.send(items.map(item => `${item.name}: ${item.cost} tokens Type: ${item.type}`).join('\n'), { code: true });
 
 	} else if (command === 'leaderboard') {
 		return message.channel.send(
@@ -95,6 +144,7 @@ return message.channel.send(items.map(item => `${item.name}: ${item.cost} tokens
 		);
 	}
 	else if (command === 'beg') {
+		if (message.author.id === banned.banne) return message.reply(`Sorry m8. You're banned from using currency commands.`)
 		if (talkedRecently.has(message.author.id)) {
 			message.channel.send("Wait 30 minutes before getting typing this again. - " + message.author);
 	} 
@@ -126,48 +176,14 @@ return message.channel.send(items.map(item => `${item.name}: ${item.cost} tokens
 	}
 	
 	
-	else if (command === 'exit') {
-		if (message.author.id === "369179413771845642") {
-			message.react('👍')
-			
-			await (message.reply(`Shutting Down!`) )
-			client.destroy()
-			process.exit()
-		}
-		else {
-			message.reply(`You aren't the bot owner!`)
-		}
-	}
-	else if (command === 'qexit') {
-		if (message.author.id === "369179413771845642") {
-			await (message.react('👍'))
-			client.destroy()
-			process.exit
-		}
-		else {
-			message.reply(`You aren't the bot owner!`)
-		}
-	}
-	else if (command === 'restart') {
-		if (message.author.id === "369179413771845642") {
-			message.reply('Restarting...')
-			await (message.react('👍'))
-			client.destroy()
-			await(client.login(config.token))
-			
-			message.reply('Restarted.')
-		}
-		else {
-			message.reply(`You aren't the bot owner!`)
-		}
-	}
+	
 	else if (command === 'forcegive') {
-		if (message.author.id == "369179413771845642") {
+		if (message.author.id == "369179413771845642","327559129705218049") {
 			
 	const transferAmount = commandArgs.split(/ +/g).find(arg => !/<@!?\d+>/g.test(arg));
 	const transferTarget = message.mentions.users.first();
 	
-	
+	if (transferAmount >= 100000) return message.reply(`Sorry you are only allowed 100k per forcegive.`)
 
 	if (!transferAmount || isNaN(transferAmount)) return message.channel.send(`Sorry ${message.author}, that's an invalid amount.`);
 	
@@ -175,14 +191,15 @@ return message.channel.send(items.map(item => `${item.name}: ${item.cost} tokens
 
 
 currency.add(transferTarget.id, transferAmount);
-
+console.log(`User ${message.author.username} used forcegive to give ${transferTarget.username} ${transferAmount} tokens!`)
 return message.channel.send(`Successfully transferred ${transferAmount} tokens to ${transferTarget.tag}.`);
 		}
-		else if (message.author.id == "387062216030945281"){
+		else if (message.author.id === "387062216030945281"){
 			const transferAmount = commandArgs.split(/ +/g).find(arg => !/<@!?\d+>/g.test(arg));
 	const transferTarget = message.mentions.users.first();
 	
-	
+	if (transferAmount >= 10000) return message.reply(`Sorry you are only allowed 10k per forcegive.`)
+
 
 	if (!transferAmount || isNaN(transferAmount)) return message.channel.send(`Sorry ${message.author}, that's an invalid amount.`);
 	
@@ -190,9 +207,12 @@ return message.channel.send(`Successfully transferred ${transferAmount} tokens t
 
 
 currency.add(transferTarget.id, transferAmount);
+console.log(`User ${message.author.username} used forcegive to give ${transferTarget.username} ${transferAmount} tokens!`)
 
 return message.channel.send(`Successfully transferred ${transferAmount} tokens to ${transferTarget.tag}.`);
+
 		}
+		
 		else {
 			message.reply(`You aren't the bot owner, or an bot admin!`)
 		}
@@ -202,33 +222,52 @@ return message.channel.send(`Successfully transferred ${transferAmount} tokens t
 		
 	const transferAmount = commandArgs.split(/ +/g).find(arg => !/<@!?\d+>/g.test(arg));
 	const transferTarget = message.mentions.users.first();
-	if (transferTarget.bot === true) return message.reply(`You can't take tokens from a bot!`)
+
 
 	if (!transferAmount || isNaN(transferAmount)) return message.channel.send(`Sorry ${message.author}, that's an invalid amount.`);
 	
-	if (transferAmount >= 0) return message.channel.send(`Please enter an amount less than zero, ${message.author}.`);
+	if (transferAmount <= 0) return message.channel.send(`Please enter an amount more than zero, ${message.author}.`);
 
 
-currency.add(transferTarget.id, transferAmount);
+currency.add(transferTarget.id, -transferAmount);
 
-return message.channel.send(`Successfully took ${transferAmount} tokens to ${transferTarget.tag}.`);
+return message.channel.send(`Successfully took ${transferAmount} tokens from ${transferTarget.tag}.`);
 		}
 		else {
 			message.reply(`You aren't the bot owner!`)
 		}
 	}
 	else if (command === 'search') {
-		var src = ["`SCP-914`", "`GATE A`", "`GATE B`","`SCP-173's Chamber`","`Blast Shelter`","`Telsla Gate`"];
+		//914,173,bs,ga,
+		var src = ["`SCP-914`",  "`SCP-173's Chamber`","`Telsla Gate`"];
+		var src1 = ["`GATE A`", "`Blast Shelter`","`SCP-2373's Cell`"];
+		var src2 = [  "`GATE B`","`Coffee Machine`"];
 		var search = Math.floor(Math.random() * src.length);
-		var search1 = Math.floor(Math.random() * src.length);
-		var search2 = Math.floor(Math.random() * src.length);
+	
+		var search1 = Math.floor(Math.random() * src1.length);
+		var search2 = Math.floor(Math.random() * src2.length);
 		
-		message.channel.send(`Where would you like to search?\n${src[search]}, ${src[search1]}, or ${src[search2]}`).then(() => {
+		message.channel.send(`Where would you like to search?\n${src[search]}, ${src1[search1]}, or ${src2[search2]}`).then(() => {
 			
 			const filter = m => message.author.id === m.author.id;
         
             message.channel.awaitMessages(filter, { time: 30000, max: 1, errors: ['time'] })
                 .then(messages => {
+					
+					if (messages.first().content === 'GATE B') {
+						var SCP = [-1, -2, -3,-4,-5,-6,-7,-8,-9,-10,11,12,-13,14,15,16,17,18,19,20];
+					var SCPA = Math.floor(Math.random() * SCP.length);
+						if (SCP[SCPA] >= 11) {
+							message.reply(`You look around Gate B. You end up finding ${SCP[SCPA]} tokens.`)
+						currency.add(message.author.id, SCP[SCPA])
+					
+						}
+						if (SCP[SCPA] <= 0) {
+							message.reply(`You look around Gate B, and see some Chaos Insurgency. They end up gunning you down. You end up losing *${SCP[SCPA]}* tokens.`)
+						currency.add(message.author.id, SCP[SCPA])
+					
+						}
+					}
 					if (messages.first().content === 'SCP-914' ) {
 						var SCP = [1, 2, 3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
 					var SCPA = Math.floor(Math.random() * SCP.length);
@@ -236,14 +275,14 @@ return message.channel.send(`Successfully took ${transferAmount} tokens to ${tra
 						message.reply(`You search SCP-914 in the "input" room. You end up finding ${SCP[SCPA]} tokens.`)
 						currency.add(message.author.id, SCP[SCPA])
 					}
-					if (messages.first().content === 'GATE A' ) {
+					else if (messages.first().content === 'GATE A' ) {
 						var SCP = [1, 2, 3,4,5,6,7,8,9,10];
 					var SCPA = Math.floor(Math.random() * SCP.length);
 						
 						message.reply(`You search GATE A to the most possible consent. You end up finding ${SCP[SCPA]} tokens.`)
 						currency.add(message.author.id, SCP[SCPA])
 					}
-					if (messages.first().content === `SCP-173's Chamber` ) {
+					else if (messages.first().content === `SCP-173's Chamber` ) {
 						var SCP = [-50,15,16,17,18,27,28,29,30,-30,-45,-10,-5,-8,-21,-36,-14,-24,-45,-12,-1,-25];
 					var SCPA = Math.floor(Math.random() * SCP.length);
 						
@@ -258,13 +297,14 @@ return message.channel.send(`Successfully took ${transferAmount} tokens to ${tra
 						}
 						
 					}
-					if (messages.first().content === `Blast Shelter` ) {
+					else if (messages.first().content === `Blast Shelter` ) {
 						var SCP = [1,3,4,7,1,8,1,5,7,3,6,4,5,2,5];
 					var SCPA = Math.floor(Math.random() * SCP.length);
 							message.reply(`You search the blast shelter. You realise that it's so clean that you only could find ${SCP[SCPA]} tokens.`)
 							currency.add(message.author.id, SCP[SCPA])
 						}
-
+						
+							
 					//message.channel.send(`You've entered: ${messages.first().content}`);
                 })
                 .catch(() => {
@@ -272,6 +312,7 @@ return message.channel.send(`Successfully took ${transferAmount} tokens to ${tra
                 });
         });
 	}
+	
 });
 
 client.login(config.token);
