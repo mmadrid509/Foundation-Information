@@ -21,7 +21,7 @@ First things first: Download this code as a ZIPPED File, and get something like 
 
 5: Run these commands: `npm install --save discord.js`,  `npm install --save sequelize`, then `npm install --save sqlite3`
 
-6: Run the command: node `./currency-stuff/dbInit.js`
+6: Run the command: node `./currency/dbInit.js`
 
 7: Open the terminal and type this: `node index.js`
 
