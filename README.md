@@ -1,4 +1,5 @@
 [![Discord Bots](https://top.gg/api/widget/702659948030459927.svg)](https://top.gg/bot/702659948030459927)
+{"avatar":"a_2d9f6c1413a832496f77cf1b28b67467","background":"","bio":"","covidFund":false,"discrim":"2021","flags":2,"house":"courage","id":"369179413771845642","isAdmin":false,"isBeta":false,"isJrMod":false,"isMod":false,"isPartner":false,"status":"online","tag":"Mmadrid509#2021","teamTrees":false,"username":"Mmadrid509","website":""}
 # Foundation-Information Basic Stuff
 This is a discord bot that has information about SCPs directly from the SCP wiki, along with some currency commands.
 
