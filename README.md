@@ -1,5 +1,5 @@
-            [![Discord Bots](https://top.gg/api/widget/status/702659948030459927.svg)](https://top.gg/bot/702659948030459927)
-                [![Discord Bots](https://top.gg/api/widget/702659948030459927.svg)](https://top.gg/bot/702659948030459927)
+[![Discord Bots](https://top.gg/api/widget/status/702659948030459927.svg)](https://top.gg/bot/702659948030459927)
+[![Discord Bots](https://top.gg/api/widget/702659948030459927.svg)](https://top.gg/bot/702659948030459927)
 # Foundation-Information Basic Stuff
 This is a discord bot that has information about SCPs directly from the SCP wiki, along with some currency commands.
 
