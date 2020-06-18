@@ -1,4 +1,4 @@
-[![Discord Bots](https://top.gg/api/widget/status/702659948030459927.svg)](https://top.gg/bot/702659948030459927)
+[![Discord Bots](https://top.gg/api/widget/status/702659948030459927.svg?noavatar=true)](https://top.gg/bot/702659948030459927)
 
 # Foundation-Information Basic Stuff
 [![Discord Bots](https://top.gg/api/widget/702659948030459927.svg)](https://top.gg/bot/702659948030459927)
